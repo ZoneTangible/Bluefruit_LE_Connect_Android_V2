@@ -2,5 +2,5 @@ jdk:
   - openjdk9
 
 install:
-   - echo "Running a custom install command (gradlew clean build)"
-   - ./gradlew clean build
+   - echo "Running a custom install command (gradlew clean install)"
+   - ./gradlew clean install
