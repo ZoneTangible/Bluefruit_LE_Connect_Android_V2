@@ -337,22 +337,19 @@ public class ImageTransferFragment extends ConnectedPeripheralFragment implement
         FragmentActivity activity = getActivity();
 
         //noinspection SwitchStatementWithTooFewBranches
-        switch (item.getItemId()) {
-            case R.id.action_help:
-                if (activity != null) {
-                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                    CommonHelpFragment helpFragment = CommonHelpFragment.newInstance(getString(R.string.imagetransfer_help_title), getString(R.string.imagetransfer_help_text));
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
-                            .replace(R.id.contentLayout, helpFragment, "Help");
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-                }
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_help) {
+            if (activity != null) {
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                CommonHelpFragment helpFragment = CommonHelpFragment.newInstance(getString(R.string.imagetransfer_help_title), getString(R.string.imagetransfer_help_text));
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                        .replace(R.id.contentLayout, helpFragment, "Help");
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 

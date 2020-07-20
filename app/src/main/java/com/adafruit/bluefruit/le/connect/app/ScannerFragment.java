@@ -243,22 +243,17 @@ public class ScannerFragment extends Fragment implements ScannerStatusFragmentDi
                 PopupMenu popup = new PopupMenu(getContext(), view1);
                 popup.setOnMenuItemClickListener(item -> {
                     boolean processed = true;
-                    switch (item.getItemId()) {
-                        case R.id.scanfilter_name_contains:
-                            mScannerViewModel.setIsFilterNameExact(false);
-                            break;
-                        case R.id.scanfilter_name_exact:
-                            mScannerViewModel.setIsFilterNameExact(true);
-                            break;
-                        case R.id.scanfilter_name_sensitive:
-                            mScannerViewModel.setIsFilterNameCaseInsensitive(false);
-                            break;
-                        case R.id.scanfilter_name_insensitive:
-                            mScannerViewModel.setIsFilterNameCaseInsensitive(true);
-                            break;
-                        default:
-                            processed = false;
-                            break;
+                    int itemId = item.getItemId();
+                    if (itemId == R.id.scanfilter_name_contains) {
+                        mScannerViewModel.setIsFilterNameExact(false);
+                    } else if (itemId == R.id.scanfilter_name_exact) {
+                        mScannerViewModel.setIsFilterNameExact(true);
+                    } else if (itemId == R.id.scanfilter_name_sensitive) {
+                        mScannerViewModel.setIsFilterNameCaseInsensitive(false);
+                    } else if (itemId == R.id.scanfilter_name_insensitive) {
+                        mScannerViewModel.setIsFilterNameCaseInsensitive(true);
+                    } else {
+                        processed = false;
                     }
                     return processed;
                 });
